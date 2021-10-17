@@ -64,19 +64,3 @@ fi
 done
 
 echo "Decompressed ${successful} archive(s)"
-
-# for i in *.zip
-# do
-#     folder=${i::-4}
-#         mkdir -p  $folder
-#     unzip -o $i -d $folder && rm $i
-#     subdirs=$(find $folder -type d | wc -l)
-#     if [[ $subdirs -eq 2 ]]; then
-#         mv ./$folder/* ./
-#         rm -r $folder
-#     else if [[ $subdirs -gt 1 ]]; then
-#         mv ./$folder/*/* ./
-#         rm -r $folder
-#     fi
-#     fi
-# done
