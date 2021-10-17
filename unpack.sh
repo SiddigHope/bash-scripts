@@ -19,43 +19,47 @@ do
 extention=$(echo "$i" | sed 's/^.*\.//')
 # echo $extention
 if [ "$extention" = "zip" ]; then 
-    if [ -z "$show" ]; then
         decompress=$(eval "unzip -o -t $i")
+    if [ -z "$show" ]; then
         if [ $? = 0 ]; then
             successful=$((successful + 1));
         fi
     else
-        unzip -o -t "$i";
+        echo "Unpacking ${i}..."
+        successful=$((successful + 1));
     fi
 else
 if [ "$extention" = "gz" ]; then
+        decompress=$(eval "gunzip -f -d -t $i")
     if [ -z "$show" ]; then
-        decompress=$(eval "gunzip -d -t $i")
         if [ $? = 0 ]; then
             successful=$((successful + 1));
         fi
     else
-        gunzip -d -t "$i"
+        echo "Unpacking ${i}..."
+        successful=$((successful + 1));
     fi
 else
 if [ "$extention" = "bz2" ]; then
+        decompress=$(eval "bunzip2 -d -q -t $i")
     if [ -z "$show" ]; then
-        decompress=$(eval "bunzip2 -o -t $i")
         if [ $? = 0 ]; then
             successful=$((successful + 1))
         fi
     else
-        bunzip2 -o -t "$i"
+        echo "Unpacking ${i}..."
+        successful=$((successful + 1));
     fi
 else
 if [ "$extention" = "cmpr" ]; then
-    if [ -z "$show" ]; then
         decompress=$(eval "uncompress -d -t $i")
+    if [ -z "$show" ]; then
         if [ $? = 0 ]; then
             successful=$((successful + 1))
         fi
     else
-        uncompress -o -t "$i"
+        echo "Unpacking ${i}..."
+        successful=$((successful + 1));
     fi
 fi
 fi
